@@ -70,6 +70,27 @@ interface JQuery {
 
 ## Init the material 
 
-## Init the routing
+## Init the routing'
 
+## utilize resources which we already have
+
+1. import the fly theme.css as global styles 
+
+```css
+/* in style.css */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+/* import the fly theme css */
+@import url(./assets/css/theme.css);
+```
+
+## debug environment config
+
+* angular-cli serve config
+   + --extract-css (aliases: -ec)
+   + --sourcemap (aliases: -sm, sourcemaps)
+   + --open (aliases: -o) default value: false
+* config npm script
+  + "debug": "ng serve -sm -ec -o"
+   
 
