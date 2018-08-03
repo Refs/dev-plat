@@ -1,18 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppMaterialModule } from './app-material.module';
 
 
-import { AppComponent } from './app.component';
+
+// import containers
+import * as fromContainers from './containers';
+
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    ...fromContainers.containers
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    AppMaterialModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [fromContainers.AppComponent]
 })
 export class AppModule { }
