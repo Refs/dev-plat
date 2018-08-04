@@ -94,3 +94,45 @@ interface JQuery {
   + "debug": "ng serve -sm -ec -o"
    
 
+## Initial ngrx store
+
+
+1. install dependencies
+
+```bash
+npm install -s @ngrx/store@5.2.0 @ngrx/effects@5.2.0 @ngrx/router-store@5.2.0 @ngrx/store-devtools@5.2.0 @ngrx/entity@5.2.0
+
+```
+
+2. install and config ngrx schematics
+
+```bash
+npm install --save-dev @ngrx/schematics@5.2.0 
+
+```
+3. install ngx-store-freeze
+
+> Meatreducer:  https://www.npmjs.com/package/ngrx-store-freeze 之所以去引入 MetaReducer 是为了使用 ngrx-store-freeze 插件，防止状态突变； 下面的写法都是 固定的写法；
+```ts
+import { StoreModule, MetaReducer, ActionReducerMap } from '@ngrx/store';
+import { storeFreeze } from 'ngrx-store-freeze';
+import { environment } from '../environments/environment'; // Angular CLI environment
+ 
+export interface State {
+  // reducer interfaces
+}
+ 
+export const reducers: ActionReducerMap<State> = {
+  // reducers
+}
+ 
+export const metaReducers: MetaReducer<State>[] = !environment.production ? [storeFreeze]: [];
+ 
+@NgModule({
+  imports: [
+    StoreModule.forRoot(reducers, { metaReducers }),
+  ]
+})
+export class AppModule {}
+
+```

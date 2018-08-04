@@ -5,8 +5,8 @@
   },
   "apps": [
     {
-      "root": "src",
       "appRoot": ".",
+      "root": "src",
       "outDir": "dist",
       "assets": [
         "assets",
@@ -59,6 +59,10 @@
   },
   "defaults": {
     "styleExt": "css",
-    "component": {}
+    "component": {
+    },
+    "schematics": {
+      "collection": "@ngrx/schematics"
+    }
   }
 }
