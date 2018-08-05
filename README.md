@@ -104,37 +104,61 @@ interface JQuery {
 
 * But in @angular/cli1.7.4 we could find `Source map not working for SCSS files` (issues/9099)
 
-```bash
-# install the @angular/cli in the local instead of global :
-npm i @angular/cli@1.7.4 (use exact version in package.json "@angular/cli": "1.7.4") 
-
-# go to node_modules@angular\cli\models\webpack-configs\common.js:172
-    catch (e) { }
-    return {
-        devtool: 'source-map',        // add this line
-        resolve: {
-            extensions: ['.ts', '.js'],
-            
-
-```
-
->  warning: 
 
 ```bash
-# This is where I imagine you have placed it:
-return {
-  resolve: {
-    devtool: 'source-map',
-    ...
-  }
-}
+# Installed css-loader and exports-loader dependencies for @angular/cli
+# i) navigate to "node_modules/@angular/cli"
+# ii) do: npm install --save css-loader exports-loader
+# iii) Modify the file "node_modules@angular\cli\models\webpack-configs\styles.js" contents, mine was in line 180
 
-# in needs to be in the return object one level higher:
-return {
-  devtool: 'source-map',
-  resolve: { ... },
-  ...
-}
+# Replace
+ const commonLoaders = [
+      { loader: 'raw-loader' },
+  ]; 
+# with
+const commonLoaders = [
+        {
+            loader: 'css-loader',
+            options: {
+                sourceMap: cssSourceMap,
+                import: false,
+            }
+        }
+    ];
+
+# Also Replace 
+// load component css as raw strings
+    const rules = baseRules.map(({ test, use }) => ({
+        exclude: globalStylePaths, test, use: [
+            ...commonLoaders,
+            {
+                loader: 'postcss-loader',
+                options: {
+                    ident: 'embedded',
+                    plugins: postcssPluginCreator,
+                    sourceMap: cssSourceMap
+                }
+            },
+            ...use
+        ]
+    }));
+# With
+// load component css as raw strings
+    const rules = baseRules.map(({ test, use }) => ({
+        exclude: globalStylePaths, test, use: [
+                'exports-loader?module.exports.toString()',
+                ...commonLoaders,
+            {
+                loader: 'postcss-loader',
+                options: {
+                    ident: 'embedded',
+                    plugins: postcssPluginCreator,
+                    sourceMap: cssSourceMap
+                }
+            },
+            ...use
+        ]
+    }));
 
 ```
 
