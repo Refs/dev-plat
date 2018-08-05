@@ -1,0 +1,125 @@
+/* @import "~jquery-modal/jquery.modal.min.css";
+@import url(../../../assets/css/fly-topnav.css);
+@import url(../../../assets/css/fly-common.css);
+
+.framework-header {
+  position: fixed;
+  padding-left: 410px;
+  top: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 80px;
+  background: #1d5ab5;
+  z-index: 101;
+}
+
+.header-logo {
+  overflow: hidden;
+  height: 100%;
+  padding: 0 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: width 0.3s ease;
+  line-height: 80px;
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 3px;
+}
+
+.header-logo .logo-full {
+  width: 100%;
+  height: 100%;
+}
+
+.lp-header-info {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+} */
+
+:host {
+  background: #1d5ab5;
+  display: flex;
+}
+
+header {
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header .logo {
+  width: 50px;
+  height: 50px;
+  background: url(../../../assets/images/logo.png) center no-repeat;
+}
+
+header .title {
+  width: 348px;
+  height: 80px;
+  text-align: center;
+  line-height: 80px;
+  font-size: 26px;
+  font-weight: 700;
+  color: white;
+  font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti, "Microsoft YaHei";
+}
+
+.nav-container {
+  display: flex;
+  min-width: 344px;
+  margin: 0px;
+}
+
+.nav-container li {
+  flex: 1;
+}
+
+.nav-container li:hover {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.nav-container li a {
+  display: block;
+  height: 11px;
+  width: 106px;
+  padding-top: 49px;
+  text-align: center;
+  color: white;
+}
+
+.nth-nav1 {
+  background: url(../../../assets/images/icon-camera.png) center no-repeat;
+}
+
+.nth-nav2 {
+  background: url(../../../assets/images/icon-run.png) center no-repeat;
+}
+
+.nth-nav3 {
+  background: url(../../../assets/images/icon-bad.png) center no-repeat;
+}
+
+.nth-nav4 {
+  background: url(../../../assets/images/icon-maintain.png) center no-repeat;
+}
+
+.nth-nav5 {
+  background: url(../../../assets/images/icon-count.png) center no-repeat;
+}
+
+.nav-actions {}
+
+.nav-actions .user-name {}
+
+.nav-actions .user-name span {}
+
+.nav-actions .user-action {}
+
+.nav-actions .user-action img {}
+
+.nav-actions .user-action span {}

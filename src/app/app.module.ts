@@ -8,7 +8,7 @@ import { AppMaterialModule } from './app-material.module';
 // import storeModule
 import { StoreModule, MetaReducer, ReducerObservable } from '@ngrx/store';
 // import router store module
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
 // import store devtools module
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
@@ -22,6 +22,8 @@ import { environment } from '../environments/environment';
 
 // import containers
 import * as fromContainers from './containers';
+// import components
+import * as fromComponents from './components';
 
 // import appModule reducers
 import { reducers, CustomSerializer } from './store';
@@ -31,7 +33,8 @@ export const metaReducers: MetaReducer<any>[] = !environment.production ? [store
 
 @NgModule({
   declarations: [
-    ...fromContainers.containers
+    ...fromContainers.containers,
+    ...fromComponents.components
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,9 @@ export const metaReducers: MetaReducer<any>[] = !environment.production ? [store
     StoreRouterConnectingModule,
     environment.production ? [] : StoreDevtoolsModule.instrument(),
   ],
-  providers: [],
+  providers: [
+    { provide: RouterStateSerializer, useClass: CustomSerializer}
+  ],
   bootstrap: [fromContainers.AppComponent]
 })
 export class AppModule { }

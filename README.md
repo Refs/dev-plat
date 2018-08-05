@@ -4,6 +4,15 @@
 
 1. Config the .angular-cli.josn to generate module that out of app folder;
 
+warning: after we change the `AppRoot` property value , we have to add the `--skip-import` suffix when we utilize the the cli to generate components, pipes..., or it will report an error `Use the skip-import option to skip importing components in NgModule`;
+
+```bash
+ng g component app/components/nav --skip-import
+
+```
+
+> after we generated the component ,we have to manually import it to a NgModule;
+
 2. Integrate the jquery
     
 ```bash
@@ -50,7 +59,7 @@ npm install jquery-modal -s
 
 ```
 
-* Config the plugin declear types
+* Config the plugin declaration types
 
 ```js
 // in src/typing.d.ts 中
@@ -93,6 +102,44 @@ interface JQuery {
 * config npm script
   + "debug": "ng serve -sm -ec -o"
 
+* But in @angular/cli1.7.4 we could find `Source map not working for SCSS files` (issues/9099)
+
+```bash
+# install the @angular/cli in the local instead of global :
+npm i @angular/cli@1.7.4 (use exact version in package.json "@angular/cli": "1.7.4") 
+
+# go to node_modules@angular\cli\models\webpack-configs\common.js:172
+    catch (e) { }
+    return {
+        devtool: 'source-map',        // add this line
+        resolve: {
+            extensions: ['.ts', '.js'],
+            
+
+```
+
+>  warning: 
+
+```bash
+# This is where I imagine you have placed it:
+return {
+  resolve: {
+    devtool: 'source-map',
+    ...
+  }
+}
+
+# in needs to be in the return object one level higher:
+return {
+  devtool: 'source-map',
+  resolve: { ... },
+  ...
+}
+
+```
+
+
+
 
 
   ## Init store routing  
@@ -125,7 +172,7 @@ npm install --save-dev @ngrx/schematics@5.2.0
 ```
 3. install ngx-store-freeze
 
-> Meatreducer:  https://www.npmjs.com/package/ngrx-store-freeze 之所以去引入 MetaReducer 是为了使用 ngrx-store-freeze 插件，防止状态突变； 下面的写法都是 固定的写法；
+> Meatreducer:  https://www.npmjs.com/package/ngrx-store-freeze 之所以去引入 MetaReducer 是为了使用 ngrx-store-freeze 插件，防止状态突变； 
 ```ts
 import { StoreModule, MetaReducer, ActionReducerMap } from '@ngrx/store';
 import { storeFreeze } from 'ngrx-store-freeze';
@@ -149,3 +196,21 @@ export const metaReducers: MetaReducer<State>[] = !environment.production ? [sto
 export class AppModule {}
 
 ```
+
+## develop the appComponent
+
+> the AppComponent is a router component , it have two view component NavComponent and SidenavComponent;
+
+
+> warning : after we render the dom in the browserthe  `Angular component host element width and height are 0`, that means the host elements `<app-nav> and <app-sidenav>` height and width will be 0,  even though the child dom have height and width ; That's because the host element has the attribute `display: inline` by default. 
+> if we want host elements's width to be supported by his child dom , we can set the host element's style by below method; But the angular team don't suggest to do this; utilize the :host selector to do this;
+
+```css
+/* sidenav.component.css */
+:host {
+  margin-top: 80px;
+}
+
+```
+
+So we can utilize the host property of the @component() config object, to config the host elemment's style. usually we add a class to the host element, then add style to the class, that's not elegant; we can the detail in the offical document `https://angular.io/guide/component-styles`  --->  using the :host selector in component's css file
