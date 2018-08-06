@@ -5,9 +5,10 @@ import { Routes, RouterModule } from '@angular/router';
 import * as fromContainers from './containers';
 
 const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'com-record' },
   {
-    path: '',
-    component: fromContainers.SpotManageComponent,
+    path: 'com-record',
+    component: fromContainers.ComRecordComponent,
   },
 ];
 

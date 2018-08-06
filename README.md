@@ -97,7 +97,7 @@ interface JQuery {
 
 * angular-cli serve config
    + --extract-css (aliases: -ec)
-   + --sourcemap (aliases: -sm, sourcemaps)
+   + --sourcemaps (aliases: -sm, sourcemaps)
    + --open (aliases: -o) default value: false
 * config npm script
   + "debug": "ng serve -sm -ec -o"
@@ -199,9 +199,9 @@ export class AppComponent{
 
 
 
-> 想從當前激活的路由state （actiated state）上面，獲取什麽信息，是由routing 序列化來決定，angular 本身就有兩個 routing state 代表當前所激活的路由狀態，我們利用序列化函數，從中選區一些項，作爲我們的state;
+> 想從當前激活的路由state （activated state）上面，獲取什麽信息，是由routing 序列化來決定，angular 本身就有兩個 routing state 代表當前所激活的路由狀態，我們利用序列化函數，從中選區一些項，作爲我們的state;
 
-> routiing store 也得遵循 action --> reducer 這條路綫，搞清楚即可 
+> routing store 也得遵循 action --> reducer 這條路綫，搞清楚即可 
    
 
 ## Initial ngrx store
@@ -252,8 +252,8 @@ export class AppModule {}
 > the AppComponent is a router component , it have two view component NavComponent and SidenavComponent;
 
 
-> warning : after we render the dom in the browserthe  `Angular component host element width and height are 0`, that means the host elements `<app-nav> and <app-sidenav>` height and width will be 0,  even though the child dom have height and width ; That's because the host element has the attribute `display: inline` by default. 
-> if we want host elements's width to be supported by his child dom , we can set the host element's style by below method; But the angular team don't suggest to do this; utilize the :host selector to do this;
+> warning : after we render the dom in the browser  `Angular component host element width and height are 0`, that means the host elements `<app-nav> and <app-sidenav>` height and width will be 0,  even though the child dom have height and width ; That's because the host element has the attribute `display: inline` by default. 
+> if we want host element's width to be supported by his child dom , we can set the host element's style by below method; But the angular team don't suggest to do this; utilize the :host selector to do this;
 
 ```css
 /* sidenav.component.css */
@@ -263,4 +263,4 @@ export class AppModule {}
 
 ```
 
-So we can utilize the host property of the @component() config object, to config the host elemment's style. usually we add a class to the host element, then add style to the class, that's not elegant; we can the detail in the offical document `https://angular.io/guide/component-styles`  --->  using the :host selector in component's css file
+So we can utilize the host property of the @component() config object, to config the host elemment's style. usually we add a class to the host element, then add style to the class, that's not elegant; we can the detail in the official document `https://angular.io/guide/component-styles`  --->  using the :host selector in component's css file ; he utilize
