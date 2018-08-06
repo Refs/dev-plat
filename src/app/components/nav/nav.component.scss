@@ -46,51 +46,51 @@
 }
 
 header {
-  padding: 0 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 30px;
+
+  .logo {
+    width: 50px;
+    height: 50px;
+    background: url(../../../assets/images/logo.png) center no-repeat;
+  }
+  .title {
+    width: 348px;
+    height: 80px;
+    text-align: center;
+    line-height: 80px;
+    font-size: 26px;
+    font-weight: 700;
+    color: white;
+    font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti, "Microsoft YaHei";
+  }
 }
 
-header .logo {
-  width: 50px;
-  height: 50px;
-  background: url(../../../assets/images/logo.png) center no-repeat;
-}
-
-header .title {
-  width: 348px;
-  height: 80px;
-  text-align: center;
-  line-height: 80px;
-  font-size: 26px;
-  font-weight: 700;
-  color: white;
-  font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti, "Microsoft YaHei";
-}
-
-.nav-container {
+ul.nav-container {
   display: flex;
   min-width: 344px;
   margin: 0px;
+  &>li {
+    flex: 1;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1) !important;
+    }
+    &.active {
+      background-color: rgba(0, 0, 0, 0.1) !important;
+    }
+    a {
+      display: block;
+      height: 11px;
+      width: 106px;
+      padding-top: 49px;
+      text-align: center;
+      color: white;
+    }
+  }
 }
 
-.nav-container li {
-  flex: 1;
-}
-
-.nav-container li:hover {
-  background-color: rgba(0, 0, 0, 0.1) !important;
-}
-
-.nav-container li a {
-  display: block;
-  height: 11px;
-  width: 106px;
-  padding-top: 49px;
-  text-align: center;
-  color: white;
-}
 
 .nth-nav1 {
   background: url(../../../assets/images/icon-camera.png) center no-repeat;
@@ -99,7 +99,6 @@ header .title {
 .nth-nav2 {
   background: url(../../../assets/images/icon-run.png) center no-repeat;
 }
-
 .nth-nav3 {
   background: url(../../../assets/images/icon-bad.png) center no-repeat;
 }
@@ -112,14 +111,22 @@ header .title {
   background: url(../../../assets/images/icon-count.png) center no-repeat;
 }
 
-.nav-actions {}
+.block-holder {
+  flex: 1;
+}
 
-.nav-actions .user-name {}
+.nav-actions {
+  display: flex;
+  align-items: center;
+  margin: 0px;
+  width: 142px;
+  .user-name {
+    width: 100px;
+    color: white;
+  }
+  .user-action {
+    width: 80px;
+    color: white;
+  }
+}
 
-.nav-actions .user-name span {}
-
-.nav-actions .user-action {}
-
-.nav-actions .user-action img {}
-
-.nav-actions .user-action span {}
