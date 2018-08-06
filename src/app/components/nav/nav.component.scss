@@ -1,44 +1,3 @@
-/* @import "~jquery-modal/jquery.modal.min.css";
-@import url(../../../assets/css/fly-topnav.css);
-@import url(../../../assets/css/fly-common.css);
-
-.framework-header {
-  position: fixed;
-  padding-left: 410px;
-  top: 0;
-  box-sizing: border-box;
-  width: 100%;
-  height: 80px;
-  background: #1d5ab5;
-  z-index: 101;
-}
-
-.header-logo {
-  overflow: hidden;
-  height: 100%;
-  padding: 0 30px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: width 0.3s ease;
-  line-height: 80px;
-  text-align: center;
-  font-size: 26px;
-  font-weight: bold;
-  color: #fff;
-  letter-spacing: 3px;
-}
-
-.header-logo .logo-full {
-  width: 100%;
-  height: 100%;
-}
-
-.lp-header-info {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-} */
 
 :host {
   background: #1d5ab5;
@@ -70,45 +29,45 @@ header {
 
 ul.nav-container {
   display: flex;
-  min-width: 344px;
+  // min-width: 344px;
   margin: 0px;
   &>li {
     flex: 1;
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.1) !important;
-    }
-    &.active {
-      background-color: rgba(0, 0, 0, 0.1) !important;
-    }
     a {
       display: block;
-      height: 11px;
+      height: 31px;
       width: 106px;
       padding-top: 49px;
       text-align: center;
       color: white;
+      &.active {
+        background-color: rgba(0, 0, 0, 0.1) !important;
+      };
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.1) !important;
+      }
     }
   }
 }
 
 
 .nth-nav1 {
-  background: url(../../../assets/images/icon-camera.png) center no-repeat;
+  background: url(../../../assets/images/icon-camera.png) 40px 19px no-repeat;
 }
 
 .nth-nav2 {
-  background: url(../../../assets/images/icon-run.png) center no-repeat;
+  background: url(../../../assets/images/icon-run.png) 40px 19px no-repeat;
 }
 .nth-nav3 {
-  background: url(../../../assets/images/icon-bad.png) center no-repeat;
+  background: url(../../../assets/images/icon-bad.png) 40px 19px no-repeat;
 }
 
 .nth-nav4 {
-  background: url(../../../assets/images/icon-maintain.png) center no-repeat;
+  background: url(../../../assets/images/icon-maintain.png) 40px 19px no-repeat;
 }
 
 .nth-nav5 {
-  background: url(../../../assets/images/icon-count.png) center no-repeat;
+  background: url(../../../assets/images/icon-count.png) 40px 19px no-repeat;
 }
 
 .block-holder {

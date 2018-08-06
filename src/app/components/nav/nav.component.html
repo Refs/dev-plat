@@ -1,57 +1,3 @@
-<!-- <div class="framework-header">
-
-  <div class="header-logo">
-    <div class="logo-full">智能交通设备监测管理平台</div>
-  </div>
-
-  <div class="topnav-wrap header-nav clearfix">
-    <div class="topnav-list-wrap clearfix">
-
-      <div class="topnav-list" style="width: 100%;">
-
-        <div class="topnav-list-item ell active">
-          <span>设备管理</span>
-        </div>
-
-        <div class="topnav-list-item ell">
-          <span>运行监控</span>
-        </div>
-
-        <div class="topnav-list-item ell">
-          <span>故障告警</span>
-        </div>
-
-        <div class="topnav-list-item ell">
-          <span>设备运维</span>
-        </div>
-
-        <div class="topnav-list-item ell">
-          <span>统计分析</span>
-        </div>
-      </div>
-    </div>
-    <div class="topnav-more" style="display: none;">
-      <a href="javascript:void(null)" class="nav-more">
-        <span class="ell" title="更多">更多</span>
-        <i class="icon icon-down"></i>
-      </a>
-
-    </div>
-  </div>
-
-  <div class="header-info lp-header-info">
-    <span class="header-quit">
-      <i></i>
-      <strong>退出</strong>
-    </span>
-    <span class="header-user">Hi,
-      <strong>测试二</strong>
-    </span>
-    <span class="header-photo"></span>
-  </div>
-
-</div> -->
-
 <header>
   <div class="logo"></div>
   <div class="title">
@@ -60,7 +6,7 @@
 </header>
 
 <ul class="nav-container">
-    <li class="active"><a class="nth-nav1 " href="">设备管理</a></li>
+    <li><a routerLink="/device-manage" routerLinkActive="active" class="nth-nav1 " href="">设备管理</a></li>
     <li><a class="nth-nav2" href="">运行监控</a></li>
     <li><a class="nth-nav3" href="">故障告警</a></li>
     <li><a class="nth-nav4" href="">设备运维</a></li>
@@ -75,7 +21,7 @@
       <span>Hi,</span>
       <span>测试二</span>
     </li>
-    <li class="user-action">
+    <li class="user-action" style="cursor: pointer;">
       <img src="../../../assets/images/button-quit.png" alt="" srcset="">
       <span>退出</span>
     </li>
