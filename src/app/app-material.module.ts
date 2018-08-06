@@ -9,6 +9,7 @@ import {
   MatToolbarModule,
   MatListModule,
   MatGridListModule,
+  MatExpansionModule
 } from '@angular/material';
 
 @NgModule({
@@ -21,6 +22,7 @@ import {
     MatToolbarModule,
     MatListModule,
     MatGridListModule,
+    MatExpansionModule
 
   ],
   exports: [
@@ -31,6 +33,7 @@ import {
     MatToolbarModule,
     MatListModule,
     MatGridListModule,
+    MatExpansionModule
 
   ],
   declarations: []

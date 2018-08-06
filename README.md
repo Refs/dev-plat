@@ -162,20 +162,46 @@ const commonLoaders = [
 
 ```
 
+## Use the svg icons instead of images 
+
+> use <mat-icon></mat-icon> to import our custom svg;
+
+```ts
+// the component in which we will use the svg icons 
+// * we should import the HttpClientModule to our component module's , because we need it to register our custom icon to the MatIconRegistry provided by angular material;
+import { Component } from "@angular/core";
+import { MatIconRegistry } from "@angular/material/icon";
+import { DomSanitizer } from "@angular/platform-browser";
+
+@Component({
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"]
+})
+export class AppComponent{
+  constructor(
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer
+  ){
+    this.matIconRegistry.addSvgIcon(
+      "unicorn",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/unicorn_icon.svg")
+    );
+  }
+}
+```
+
+
+## Init store routing  
+
+> 對於路由當前的狀態是唯一的，即整個應用 當前只有一個路由狀態；
+> 當前所激活的路由，即是自己在 routing module 中所配置的路由，即當前路由是什麽樣的，是我們自身設計的；這就意味著我們能控制當前路由的 RouterStateSnapshot 與 ActivatedRouteSnapshot 的形式；
 
 
 
+> 想從當前激活的路由state （actiated state）上面，獲取什麽信息，是由routing 序列化來決定，angular 本身就有兩個 routing state 代表當前所激活的路由狀態，我們利用序列化函數，從中選區一些項，作爲我們的state;
 
-  ## Init store routing  
-
-  > 對於路由當前的狀態是唯一的，即整個應用 當前只有一個路由狀態；
-  > 當前所激活的路由，即是自己在 routing module 中所配置的路由，即當前路由是什麽樣的，是我們自身設計的；這就意味著我們能控制當前路由的 RouterStateSnapshot 與 ActivatedRouteSnapshot 的形式；
-
-
-
-  > 想從當前激活的路由state （actiated state）上面，獲取什麽信息，是由routing 序列化來決定，angular 本身就有兩個 routing state 代表當前所激活的路由狀態，我們利用序列化函數，從中選區一些項，作爲我們的state;
-
-  > routiing store 也得遵循 action --> reducer 這條路綫，搞清楚即可 
+> routiing store 也得遵循 action --> reducer 這條路綫，搞清楚即可 
    
 
 ## Initial ngrx store
