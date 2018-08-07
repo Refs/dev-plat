@@ -21,7 +21,7 @@ export class LeftMenusEffects {
         .getTopNavItems()
         .pipe(
           map((leftMenus) => {
-            // return new fromActions.LoadLeftMenusSuccess(leftMenus);
+            return new fromActions.LoadLeftMenusSuccess(leftMenus);
           }),
           catchError(error => of(new fromActions.LoadLeftMenusFail(error)))
         );

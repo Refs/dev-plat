@@ -12,7 +12,7 @@ export interface LeftMenusState {
 
 
 export const initialState: LeftMenusState = {
-  entities: [],
+  entities: {},
   loaded: false,
   loading: false,
   selectedSideMenu: null
@@ -33,13 +33,40 @@ export function reducer(
 
     case fromActions.LeftMenusActionType.LOAD_LEFT_MENUS_SUCCESS:
       {
+        const topNavItemArray = action.payload;
+        const entities = topNavItemArray.reduceRight(
+          // tslint:disable-next-line:no-shadowed-variable
+          (entities: {[id: number]: fromModels.TopNavItem}, topNavItem: fromModels.TopNavItem) => {
+            return {
+              ...entities,
+              [topNavItem.id]: topNavItem
+            };
+          },
+          {
+            ...state.entities
+          }
+        );
         return {
           ...state,
+          loading: false,
+          loaded: true,
           entities: action.payload
+        };
+      }
+    case fromActions.LeftMenusActionType.LOAD_LEFT_MENUS_FAIL:
+      {
+        return {
+          ...state,
+          loading: false,
+          loaded: false
         };
       }
   }
 }
+
+export const getLeftMenusEntities = (state: LeftMenusState) => state.entities;
+export const getLeftMenusLoaded = (state: LeftMenusState) => state.loaded;
+export const getLeftMenusLoading = (state: LeftMenusState) => state.loading;
 
 
 

@@ -16,7 +16,7 @@ export class TopNavItemsService {
 
   constructor( private http: HttpClient ) { }
 
-  getTopNavItems(): Observable<fromModels.LeftMenu> {
+  getTopNavItems(): Observable<fromModels.TopNavItem[]> {
     return this.http
       .get<fromModels.LeftMenu>('http://localhost:3000/deviceplatform/getLeftMenu')
       .pipe(

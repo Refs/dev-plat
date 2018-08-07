@@ -4,6 +4,7 @@ import { RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
 
 import * as fromRouter from '@ngrx/router-store';
+import * as fromLeftMenus from './leftMenus.reducer';
 
 // import { RouterStateUrl } from '../../models/router/router.model';
 import * as fromModels from '../../models';
@@ -11,13 +12,17 @@ import * as fromModels from '../../models';
 
 export interface RootState {
   routerReducer: fromRouter.RouterReducerState<fromModels.RouterStateUrl>;
+  leftMenus: fromLeftMenus.LeftMenusState;
 }
 
 export const reducers: ActionReducerMap<RootState> = {
-  routerReducer: fromRouter.routerReducer
+  routerReducer: fromRouter.routerReducer,
+  leftMenus: fromLeftMenus.reducer
 };
 
 export const getRouterState = createFeatureSelector<fromRouter.RouterReducerState<fromModels.RouterStateUrl>>('routerReducer');
+
+export const getLeftMenusState = createFeatureSelector<fromLeftMenus.LeftMenusState>('leftMenus');
 
 export class CustomSerializer implements fromRouter.RouterStateSerializer<fromModels.RouterStateUrl> {
   serialize(routerState: RouterStateSnapshot): fromModels.RouterStateUrl {

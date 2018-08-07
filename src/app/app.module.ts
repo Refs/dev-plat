@@ -12,6 +12,9 @@ import { StoreModule, MetaReducer, ReducerObservable } from '@ngrx/store';
 import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
 // import store devtools module
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+// import effects module
+import { EffectsModule } from '@ngrx/effects';
+
 
 
 
@@ -29,7 +32,7 @@ import * as fromComponents from './components';
 import * as fromServices from './services';
 
 // import appModule reducers
-import { reducers, CustomSerializer } from './store';
+import { reducers, CustomSerializer, effects } from './store';
 
 
 export const metaReducers: MetaReducer<any>[] = !environment.production ? [storeFreeze] : [];
@@ -47,6 +50,7 @@ export const metaReducers: MetaReducer<any>[] = !environment.production ? [store
     AppMaterialModule,
     StoreModule.forRoot(reducers, {metaReducers}),
     StoreRouterConnectingModule,
+    EffectsModule.forRoot(effects),
     environment.production ? [] : StoreDevtoolsModule.instrument(),
   ],
   providers: [
