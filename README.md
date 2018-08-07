@@ -264,3 +264,5 @@ export class AppModule {}
 ```
 
 So we can utilize the host property of the @component() config object, to config the host elemment's style. usually we add a class to the host element, then add style to the class, that's not elegant; we can the detail in the official document `https://angular.io/guide/component-styles`  --->  using the :host selector in component's css file ; he utilize
+
+## store the cookie which we're going to  append to the url request header to the environment 
