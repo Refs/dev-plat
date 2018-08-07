@@ -8,6 +8,10 @@ const routes: Routes = [
     path: 'device-manage',
     loadChildren: '../ar-devmanage/ar-devmanage.module#ArDevmanageModule',
   },
+  {
+    path: 'performance-monitor',
+    loadChildren: '../ar-permonitor/ar-permonitor.module#ArPermonitorModule',
+  },
 ];
 
 @NgModule({
