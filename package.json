@@ -9,7 +9,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "debug": "ng serve --extract-css --sourcemap -o --port 4300"
+    "debug": "ng serve --extract-css --sourcemap -o --port 4300",
+
+    "node": "cd ~/Desktop/node-restfull/api/"
   },
   "private": true,
   "dependencies": {

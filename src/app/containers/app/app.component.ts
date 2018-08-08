@@ -5,6 +5,10 @@ import * as fromServices from '../../services';
 import { Store } from '@ngrx/store';
 
 import * as fromStore from '../../store';
+
+import { Observable } from 'rxjs/Observable';
+import { tap } from '../../../../node_modules/rxjs/operators';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,16 +16,21 @@ import * as fromStore from '../../store';
 })
 export class AppComponent implements OnInit {
 
+  pizza$: Observable<any>;
+
   constructor(
     private topServices: fromServices.TopNavItemsService,
     private store: Store<fromStore.RootState>
-  ) {}
+  ) {
+    this.store.dispatch(new fromStore.LoadLeftMenus() );
+  }
 
   ngOnInit () {
-    // this.topServices.getTopNavItems()
-    //   .subscribe((data) => {
-    //     console.log(data);
-    //   });
-    this.store.dispatch(new fromStore.LoadLeftMenus() );
+    this.pizza$ = this.store.select(fromStore.getLeftMenusState)
+      .pipe(
+        tap((data) => {
+          console.log(data);
+        }),
+      );
   }
 }

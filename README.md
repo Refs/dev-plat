@@ -95,6 +95,8 @@ interface JQuery {
 
 ## debug environment config
 
+### Scss inspect
+
 * angular-cli serve config
    + --extract-css (aliases: -ec)
    + --sourcemaps (aliases: -sm, sourcemaps)
@@ -161,6 +163,46 @@ const commonLoaders = [
     }));
 
 ```
+
+### Inspect typescript in vscode
+
+1. install `Debugger For Chrome` extension
+
+2. config windows system environment variable of chrome , so we can launch it in the terminal;
+
+3. launch chrome in inspect pattern in the terminal;
+
+```bash
+"chrome": "chrome --remote-debugging-port=9222",
+
+```
+
+4. add new npm script of node , so we can run the node server in terminal;
+
+```bash
+cd ~/Desktop/node_restfull/api/
+npm run start
+```
+
+5. generate the launch.json file of the vscode inspector;
+
+```json
+// .vscode/launch.json
+{
+  "type": "chrome",
+  "request": "attach",
+  "name": "Attach to Chrome",
+  "port": 9222,
+  "url": "http://localhost:4200",
+  "webRoot": "${workspaceFolder}",
+  "sourceMaps": true,
+  "skipFiles": [
+    "${workspaceFolder}/**/node_modules/**/*.js",
+  ]
+}
+
+```
+
 
 ## Use the svg icons instead of images 
 

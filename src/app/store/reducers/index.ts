@@ -23,6 +23,7 @@ export const reducers: ActionReducerMap<RootState> = {
 export const getRouterState = createFeatureSelector<fromRouter.RouterReducerState<fromModels.RouterStateUrl>>('routerReducer');
 
 export const getLeftMenusState = createFeatureSelector< fromLeftMenus.LeftMenusState>('leftMenus');
+// export const getLayoutState = createFeatureSelector<fromLeftMenus.LeftMenusState>( 'leftMenus' );
 
 export class CustomSerializer implements fromRouter.RouterStateSerializer<fromModels.RouterStateUrl> {
   serialize(routerState: RouterStateSnapshot): fromModels.RouterStateUrl {
