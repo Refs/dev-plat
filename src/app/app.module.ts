@@ -32,10 +32,10 @@ import * as fromComponents from './components';
 import * as fromServices from './services';
 
 // import appModule reducers
-import { reducers, CustomSerializer, effects } from './store';
+import { reducers, CustomSerializer, effects, RootState } from './store';
 
 
-export const metaReducers: MetaReducer<any>[] = !environment.production ? [storeFreeze] : [];
+export const metaReducers: MetaReducer<RootState>[] = !environment.production ? [storeFreeze] : [];
 
 @NgModule({
   declarations: [
@@ -45,11 +45,14 @@ export const metaReducers: MetaReducer<any>[] = !environment.production ? [store
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     HttpClientModule,
     AppMaterialModule,
-    StoreModule.forRoot(reducers, {metaReducers}),
-    StoreRouterConnectingModule,
+    AppRoutingModule,
+
+    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreRouterConnectingModule.forRoot({
+      stateKey: 'routerReducer',
+    }),
     EffectsModule.forRoot(effects),
     environment.production ? [] : StoreDevtoolsModule.instrument(),
   ],

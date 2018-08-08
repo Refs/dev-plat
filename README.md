@@ -266,3 +266,95 @@ export class AppModule {}
 So we can utilize the host property of the @component() config object, to config the host elemment's style. usually we add a class to the host element, then add style to the class, that's not elegant; we can the detail in the official document `https://angular.io/guide/component-styles`  --->  using the :host selector in component's css file ; he utilize
 
 ## store the cookie which we're going to  append to the url request header to the environment 
+
+
+## store reducers 中一个致命的 bug;
+
+```ts
+export function reducer(
+  state: LeftMenusState = initialState,
+  action: fromActions.LeftMenusAction
+): LeftMenusState {
+  switch (action.type) {
+    case fromActions.LeftMenusActionType.LOAD_LEFT_MENUS:
+      {
+        return {
+          ...state,
+          loading: true
+        };
+      }
+
+    case fromActions.LeftMenusActionType.LOAD_LEFT_MENUS_SUCCESS:
+      {
+        const topNavItemArray = action.payload;
+        const entities = topNavItemArray.reduceRight(
+          // tslint:disable-next-line:no-shadowed-variable
+          (entities: {[id: number]: fromModels.TopNavItem}, topNavItem: fromModels.TopNavItem) => {
+            return {
+              ...entities,
+              [topNavItem.id]: topNavItem
+            };
+          },
+          {
+            ...state.entities
+          }
+        );
+        return {
+          ...state,
+          loading: false,
+          loaded: true,
+          entities: action.payload
+        };
+      }
+    case fromActions.LeftMenusActionType.LOAD_LEFT_MENUS_FAIL:
+      {
+        return {
+          ...state,
+          loading: false,
+          loaded: false
+        };
+      }
+  }
+  // this is a bug , if we don't return after @ngrx/store/init our states is still empty;
+  return state;
+}
+
+```
+
+> Bug description: 
+* after @ngrx/store/init 
+
+> to understand this bug , we should know the action flow in 
+
+
+1. Question1 : the procession order of effects versus reducer ? 
+> when we dispatch a 'LOAD_LEFT_MENUS' action the effects will intercept the action and executes some logic, then dispatch a new action to reducer; but the reducer can also listen to the 'LOAD_LEFT_MENUS' even though it has been intercepted by the effect； the evidence is if we don't return default state in the leftMenus reducer, after @ngrx/store/init it will be empty, but when we dispatch a 'LOAD_LEFT_MENUS' which will will be intercepted by the effect , we can still get a default state; this is because the leftMenus reducer has handled this action;
+
+```ts
+// reducers
+ case fromActions.LeftMenusActionType.LOAD_LEFT_MENUS:
+      {
+        return {
+          ...state,
+          loading: true
+        };
+      }
+```
+
+```ts
+loadLeftMenus$ = this.action$.ofType(fromActions.LeftMenusActionType.LOAD_LEFT_MENUS).pipe(
+    switchMap(() => {
+      return this.topServices
+        .getTopNavItems()
+        .pipe(
+          map((leftMenus) => {
+            return new fromActions.LoadLeftMenusSuccess(leftMenus);
+          }),
+          catchError(error => of(new fromActions.LoadLeftMenusFail(error)))
+        );
+    })
+  );
+
+```
+
+> we should inspect it on the chrome DevTools to see the procession;

@@ -19,7 +19,7 @@ export const initialState: LeftMenusState = {
 };
 
 export function reducer(
-  state = initialState,
+  state: LeftMenusState = initialState,
   action: fromActions.LeftMenusAction
 ): LeftMenusState {
   switch (action.type) {
@@ -62,6 +62,8 @@ export function reducer(
         };
       }
   }
+  // this is a bug , if we don't return after @ngrx/store/init our states is still empty;
+  return state;
 }
 
 export const getLeftMenusEntities = (state: LeftMenusState) => state.entities;
