@@ -322,9 +322,12 @@ export function reducer(
 ```
 
 > Bug description: 
-* after @ngrx/store/init 
+* after @ngrx/store/init Action the leftMenus is empty which should have value of leftMenus initial state; after LOAD_LEFT_MENUS leftMenus have the value of leftMenus initial state; after  LOAD_LEFT_MENUS_SUCCESS it has the value we strive from the backbend, but after ROUTER_NAVIGATION it'll be empty; the reason is that I didn't return the default state in the reducer function;
 
-> to understand this bug , we should know the action flow in 
+* to understand this bug , we should know the action flow in the store: 
+  + When we register the 'reducer functions' by `StoreModule.forRoot(reducers, { metaReducers })` that means every reducer's going to accept the action dispatched by the store. so when the @ngrx/store/init has been dispatched every reducer will listen to it;      
+  + After the @ngrx/store/init has been dispatched our leftMenus reducer will execute it , but there isn't a case that can match the Action, so it have to return the default state, if it has'n a default state,it will return none; so we get a empty after @ngrx/store/init action;  
+  + So after the 'ROUTER_NAVIGATION' action , it will be empty; because it has no case to match the action and has nothing to return ;
 
 
 1. Question1 : the procession order of effects versus reducer ? 
@@ -358,3 +361,5 @@ loadLeftMenus$ = this.action$.ofType(fromActions.LeftMenusActionType.LOAD_LEFT_M
 ```
 
 > we should inspect it on the chrome DevTools to see the procession;
+
+2. question 2 , If we dispatch an action on featureStore like `constructor(private store: Store<fromStore.ProductsState>) {};  this.store.dispatch(new fromStore.LoadPizzas()); `  does the reducer which didn't register on this store can listen the action ? 
