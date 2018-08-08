@@ -1,8 +1,8 @@
 # Device platform project technical document
 
-## Initial angular development envirenment
+## Initial angular development environment
 
-1. Config the .angular-cli.josn to generate module that out of app folder;
+1. Config the .angular-cli.json to generate module that out of app folder;
 
 warning: after we change the `AppRoot` property value , we have to add the `--skip-import` suffix when we utilize the the cli to generate components, pipes..., or it will report an error `Use the skip-import option to skip importing components in NgModule`;
 
@@ -222,7 +222,7 @@ npm install --save-dev @ngrx/schematics@5.2.0
 ```
 3. install ngx-store-freeze
 
-> Meatreducer:  https://www.npmjs.com/package/ngrx-store-freeze 之所以去引入 MetaReducer 是为了使用 ngrx-store-freeze 插件，防止状态突变； 
+> MetaReducer:  https://www.npmjs.com/package/ngrx-store-freeze 之所以去引入 MetaReducer 是为了使用 ngrx-store-freeze 插件，防止状态突变； 
 ```ts
 import { StoreModule, MetaReducer, ActionReducerMap } from '@ngrx/store';
 import { storeFreeze } from 'ngrx-store-freeze';
@@ -263,7 +263,7 @@ export class AppModule {}
 
 ```
 
-So we can utilize the host property of the @component() config object, to config the host elemment's style. usually we add a class to the host element, then add style to the class, that's not elegant; we can the detail in the official document `https://angular.io/guide/component-styles`  --->  using the :host selector in component's css file ; he utilize
+So we can utilize the host property of the @component() config object, to config the host element style. usually we add a class to the host element, then add style to the class, that's not elegant; we can the detail in the official document `https://angular.io/guide/component-styles`  --->  using the :host selector in component's css file ; he utilize
 
 ## store the cookie which we're going to  append to the url request header to the environment 
 
@@ -326,7 +326,7 @@ export function reducer(
 
 * to understand this bug , we should know the action flow in the store: 
   + When we register the 'reducer functions' by `StoreModule.forRoot(reducers, { metaReducers })` that means every reducer's going to accept the action dispatched by the store. so when the @ngrx/store/init has been dispatched every reducer will listen to it;      
-  + After the @ngrx/store/init has been dispatched our leftMenus reducer will execute it , but there isn't a case that can match the Action, so it have to return the default state, if it has'n a default state,it will return none; so we get a empty after @ngrx/store/init action;  
+  + After the @ngrx/store/init has been dispatched our leftMenus reducer will execute it , but there isn't a case that can match the Action, so it have to return the default state, if it hasn't a default state,it will return none; so we get a empty after @ngrx/store/init action;  
   + So after the 'ROUTER_NAVIGATION' action , it will be empty; because it has no case to match the action and has nothing to return ;
 
 
