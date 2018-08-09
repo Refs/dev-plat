@@ -289,7 +289,42 @@ export class AppModule {}
 
 ```
 
-> warning : when we call this.store.pipe(select(fromStore.getLeftMenusState)), we just return a observable, the selector function won't be called until we subscribe it;
+### ngrx selector bug:
+
+1. when we call this.store.pipe(select(fromStore.getLeftMenusState)), we just return a observable, the selector function won't be called until we subscribe it;
+
+2. we can easy get a bug , if we code like below: 
+
+> The selector function returned by calling `createSelector` or `createFeatureSelector` initially has a memoized value of `null`. After a selector is invoked the first time its memoized value is stored in memory. If the selector is subsequently invoked with the same arguments it will return the memoized value. `If the selector is then invoked with different arguments it will recompute, and update its memoized value. Consider the following:`
+
+> the `getSelectedLeftMenusEntities` selector has two argument which are the state pieces of leftMenus state and router state , that means every action fire, the fromReducers.getRouterState and getLeftMenus will fire; there is a situation  where the router state hasn't be initialed when `getSelectedLeftMenusEntities` selector be called , the state will be undefined  and `router.state` will be a error `there is no state property on undefined`,  so we have to make conditions when we code selectors;
+```ts
+export const getSelectedLeftMenusEntities = createSelector(
+  fromReducers.getRouterState,
+  getLeftMenus,
+  (router, entities) => {
+      // we will get the state is not a property of undefined , because when this selector be involved the router state hasn't be initialed;
+      return router.state && entities;
+    }
+  }
+);
+
+```
+
+```ts
+export const getSelectedLeftMenusEntities = createSelector(
+  fromReducers.getRouterState,
+  getLeftMenus,
+  (router, entities) => {
+    if (router && entities) {
+      return router && entities[395].childs;
+    }
+  }
+);
+
+```
+
+3. use `let` instead of `const` in the selector function 
 
 ## develop the appComponent
 
