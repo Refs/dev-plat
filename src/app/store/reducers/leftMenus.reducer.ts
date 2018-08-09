@@ -50,7 +50,7 @@ export function reducer(
           ...state,
           loading: false,
           loaded: true,
-          entities: action.payload
+          entities
         };
       }
     case fromActions.LeftMenusActionType.LOAD_LEFT_MENUS_FAIL:

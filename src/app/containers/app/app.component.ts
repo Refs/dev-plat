@@ -2,7 +2,7 @@ import { Component , OnInit } from '@angular/core';
 
 import * as fromServices from '../../services';
 
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
 import * as fromStore from '../../store';
 
@@ -26,11 +26,11 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit () {
-    this.pizza$ = this.store.select(fromStore.getLeftMenusState)
-      .pipe(
-        tap((data) => {
-          console.log(data);
-        }),
-      );
+    this.pizza$ = this.store.pipe(
+      select(fromStore.getSelectedLeftMenusEntities),
+      tap((data) => {
+        console.log(data);
+      })
+    );
   }
 }

@@ -289,6 +289,8 @@ export class AppModule {}
 
 ```
 
+> warning : when we call this.store.pipe(select(fromStore.getLeftMenusState)), we just return a observable, the selector function won't be called until we subscribe it;
+
 ## develop the appComponent
 
 > the AppComponent is a router component , it have two view component NavComponent and SidenavComponent;

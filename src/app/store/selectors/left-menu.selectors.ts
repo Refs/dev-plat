@@ -6,7 +6,7 @@ import * as fromLeftMenus from '../reducers/leftMenus.reducer';
 
 export const getLeftMenus = createSelector(
   fromReducers.getLeftMenusState,
-  fromLeftMenus.getLeftMenusEntities
+  fromLeftMenus.getLeftMenusEntities,
 );
 
 
@@ -14,7 +14,9 @@ export const getSelectedLeftMenusEntities = createSelector(
   fromReducers.getRouterState,
   getLeftMenus,
   (router, entities) => {
-     return router.state && entities;
+    if (router && entities) {
+      return router && entities[395].childs;
+    }
   }
 );
 
