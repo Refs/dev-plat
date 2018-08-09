@@ -5,15 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 import * as fromContainers from './containers';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'com-record' },
+  { path: '', pathMatch: 'full', redirectTo: 'device-information' },
   {
-    path: 'com-record',
-    component: fromContainers.ComRecordComponent,
+    path: 'device-information',
+    component: fromContainers.DeviceInformationComponent,
+
   },
-  {
-    path: 'add-bayonet',
-    loadChildren: '../ar-add-bayonet/ar-add-bayonet.module#ArAddBayonetModule'
-  }
 ];
 
 @NgModule({
