@@ -203,6 +203,15 @@ npm run start
 
 ```
 
+### the separation environment between front-end and back-end
+
+1.  we can utilize postman with session to request back-end . the postman is like a bridge we can  connect the front-end and back-end
+  + when request , we have set correct header with appropriate data, so the java can response our postman request . so we can mock the same header and body in our angular code ;
+  + when the java response , we could get the response in the postman ,  we couldn't get the response in the angular, but we can accept the response in our node serve. so we can mock the response in the our node serve.  
+2. when we angular want to post data to java, we intercept the data , and test the data in the postman . if the java serve accept that data , it will response the data to the postman,  that means our angular data format is correct. 
+3. angular couldn't accept the data responded by java, by it can accept the data responded by node, so we can put the data responded by java into my node. 
+4. finally our angular can request and get data from our node serve; 
+
 
 ## Use the svg icons instead of images 
 
@@ -442,3 +451,9 @@ loadLeftMenus$ = this.action$.ofType(fromActions.LeftMenusActionType.LOAD_LEFT_M
 > we should inspect it on the chrome DevTools to see the procession;
 
 2. question 2 , If we dispatch an action on featureStore like `constructor(private store: Store<fromStore.ProductsState>) {};  this.store.dispatch(new fromStore.LoadPizzas()); `  does the reducer which didn't register on this store can listen the action ? 
+
+
+
+
+
+
