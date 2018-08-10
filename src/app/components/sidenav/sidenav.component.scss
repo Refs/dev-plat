@@ -52,7 +52,10 @@
         font-size: 14px;
         padding-left: 30px;
 
-        color: #3557a6;
+        color: gray;
+      }
+      a.active {
+        color: blue;
       }
     }
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Store, select } from '@ngrx/store';
 
@@ -16,7 +16,10 @@ import { tap } from '../../../../node_modules/rxjs/operators';
 })
 export class SidenavComponent implements OnInit {
 
+  // @ViewChild('a.active') aActive;
+
   leftMenus$: Observable<any>;
+
 
   constructor(
     private store: Store<fromStore.RootState>
