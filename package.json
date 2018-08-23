@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "debug": "ng serve --extract-css --sourcemap --port 4300",
+    "debug": "ng build  --prod --base-href /add/ -d /add --extract-css --sourcemap",
+    "debug2": "ng build --prod --base-href /angularHeader/ -d /angularHeader",
 
     "node": "cd ~/Desktop/node-restfull/api/"
   },
