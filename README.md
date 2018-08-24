@@ -553,6 +553,41 @@ ng build  --prod --base-href /add/wechat/ -d /add/wechat --output-path ./wechat/
 > that means when we code the source file , the angular-cli in the linux will be auto build , then we refresh the browser, get the new file from tomcat; this process is like we debug the wechat server;
 
 
+## 米花约影的前后端分离实现 
+
+* spring 与 vue 的打包上线部署 闭环 测试
+  （一会可以模拟下 angular 的打包）
+* 跨域解决方案
+  + spring uaas 切面处理
+  + session 的会话保持
+  + 浏览器 Option 请求的处理
+  + 跨域 处理 （拦截器）
+* 前后端分离模式
+  + 前后端开发完全分离 前端只需利用 webpack serve 起来 
+  + 后台只需
+  + 两个之间没有任何中间转接
+  + 对接的都是真实的，点对点的 json 数据
+
+* 微信小程序 bug 排查 与 优化
+  + Promise Promise 化
+  + Iphone 闪烁 (h5 geolocation 的逻辑有问题)
+  + mineMap 闪烁 minemap 的渲染机制有问题
+
+* angular tomcat 环境下的打包线上闭环测试；
+  + 杨丽 那边的一个权限管理系统
+
+* 员工培训
+
+* 下周重点在于 组内 人员培训；
+
+
+1. 引 包 要尽量减少污染；jquery 与 minemap
+2. 懒加载 
+3. 状态相应
+4. flex 布局
+5. 训练 angular cli
+
+
 
 
 
