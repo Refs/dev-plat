@@ -582,13 +582,21 @@ ng build  --prod --base-href /add/wechat/ -d /add/wechat --output-path ./wechat/
 
 
 1. 引 包 要尽量减少污染；jquery 与 minemap
-2. 懒加载 
-3. 状态相应
+2. 懒加载  就算 别的 刚开始打包是50k 我的时1000k 但刚开始我只加载20 k
+3. 状态相应 前台数据库
 4. flex 布局
 5. 训练 angular cli
 
+# 分离 开发 
+ > 上线 
 
+# 缓存 解决
 
+cli 是一个工具 
+
+## 接口服务器
+## json-serve: mock服务器
+## 专门的接口模块；
 
 
 

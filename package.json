@@ -8,10 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build": "ng build  --base-href /add/wechat/ -d /add/wechat --output-path ./wechat/ --watch --extract-css --sourcemap",
+    "build": "ng build -pro  --base-href /add/wechat/ -d /add/wechat --output-path ./wechat/  --extract-css --sourcemap",
     "debug": "ng serve  --extract-css --sourcemap --port 4400",
-
-
     "node": "cd ~/Desktop/node-restfull/api/"
   },
   "private": true,

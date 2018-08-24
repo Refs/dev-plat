@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: 'performance-monitor',
     loadChildren: '../ar-permonitor/ar-permonitor.module#ArPermonitorModule',
-  },
+  }
 ];
 
 @NgModule({
