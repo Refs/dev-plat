@@ -5,12 +5,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "debug": "ng build  --prod --base-href /add/ -d /add --extract-css --sourcemap",
-    "debug2": "ng build --prod --base-href /angularHeader/ -d /angularHeader",
+    "build": "ng build  --base-href /add/wechat/ -d /add/wechat --output-path ./wechat/ --watch --extract-css --sourcemap",
+    "debug": "ng serve  --extract-css --sourcemap --port 4400",
+
 
     "node": "cd ~/Desktop/node-restfull/api/"
   },

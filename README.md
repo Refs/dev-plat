@@ -445,6 +445,33 @@ loadLeftMenus$ = this.action$.ofType(fromActions.LeftMenusActionType.LOAD_LEFT_M
 2. question 2 , If we dispatch an action on featureStore like `constructor(private store: Store<fromStore.ProductsState>) {};  this.store.dispatch(new fromStore.LoadPizzas()); `  does the reducer which didn't register on this store can listen the action ? 
 
 
+## Building and  Packing online
+
+> when we have builded the spring project , we build and package it as a war. To suppose our war name is myWar , when we launch the tomcat we can access it via http://localhost:8080/add/wechat
+
+1. we build our angular :
+
+```bash
+// the first url 'add' is the war name
+// the second url is the folder in the add project root directory
+// we can access the index.html via http://localhost:8080/add/wechat
+ng build  --prod --base-href /add/wechat/ -d /add/wechat --output-path ./wechat/ --watch --extract-css --sourcemap
+
+```
+
+2. we can local the source file  
+
+```bash
+--output-path  --watch
+
+```
+
+
+
+
+
+
+
 
 
 
