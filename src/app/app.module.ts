@@ -30,6 +30,7 @@ import * as fromContainers from './containers';
 import * as fromComponents from './components';
 // import services
 import * as fromServices from './services';
+// import pipes
 
 // import appModule reducers
 import { reducers, CustomSerializer, effects, RootState } from './store';
@@ -40,7 +41,7 @@ export const metaReducers: MetaReducer<RootState>[] = !environment.production ? 
 @NgModule({
   declarations: [
     ...fromContainers.containers,
-    ...fromComponents.components
+    ...fromComponents.components,
   ],
   imports: [
     BrowserModule,

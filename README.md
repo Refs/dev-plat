@@ -599,7 +599,16 @@ cli 是一个工具
 ## 专门的接口模块；
 
 
+> 若想大家都接收，最快的方式是将底层，都封装为模块或指令，不用教他们原理是什么，而只需教他们如何去使用
 
+
+It's a special kind of a View Node that sits inside a view and; What input data is used to create them . 
+
+Angular doesn't use a View Container for static views and instead holds a reference to child views inside the node specific to the child component. 
+
+
+Using the DomSanitizer to Embed YouTube Videos in Ionic 2 / Angular Applications
+> https://www.youtube.com/watch?v=2JeKfQ2r2r8
 
 
 
